@@ -50,13 +50,13 @@ Add the MicroPython firmware to the Pico:
 ## Putting Everything Together
 The setup given below is an example of how the different components can be connected.
 
-Important things to make sure are connected properly: 
+IMPORTANT THINGS THAT MUST BE CONNECTED PROPERLY
+1. Temperature sensor: Ground pin to GND, 3V3(OUT) to Vdd pin and ADC pin to Vout See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf).
+2. LED: GP pin to Anode and Ground pin to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
 
-Temperature sensor: Ground pin to GND, 3V3(OUT) to Vdd pin and ADC pin to Vout See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf). 
-
-LED: GP pin to Anode and Ground pin to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
-
-Rasberrry Pi Pico [documentation](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
+Rasberrry Pi Pico W [documentation](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
 
 <img src="img/IoT-Bb-Sketch.png">
+
+## Platform
 
