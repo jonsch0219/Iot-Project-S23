@@ -30,3 +30,21 @@ To connect to the Rasberry Pi Pico W to my computer I used a 1.8 meter A-male to
 | Solderless Breadboard 840 tie-points | <img src="img/breadboard.jpg" width="200"> | [Electrokit link](https://www.electrokit.com/en/product/solderless-breadboard-840-tie-points-2/) |
 | Jumper wires 40-pin 30cm male/male | <img src="img/cables.jpg" width="200"> | [Electrokit link](https://www.electrokit.com/en/product/jumper-wires-40-pin-30cm-male-male/) |
 | USB cable A-male – microB-male 1.8m | <img src="img/usb.jpg" width="200"> | [Electrokit link](https://www.electrokit.com/en/product/usb-cable-a-male-microb-male-1-8m/) |
+
+## Computer Setup
+The chosen IDE for this project is Visual Studio Code with the Pico-w-go extension (with MicroPython firmware) which is used to upload code to the Pico.
+
+## Setup
+Donwload Python and Setup VS Code:
+1. Download and Install [Python](https://www.python.org/downloads/)
+2. Download and Install [Visual Studio Code IDE](https://code.visualstudio.com/download)
+3. Install the Pico-w-go extension in Visual Studio Code
+
+Add the MicroPython firmware to the Pico:
+1. Download [MicroPython](https://micropython.org/download/)
+2. Connect the micro USB end of the cable to the Pico
+3. While pressing the BOOTSEL button on the Pico connect the USB cable to your computer
+4. If done correctly a new drive should appear called RPI-RP2, insert the uf2 file retrieved when downloading MicroPython into this drive.
+5. Wait for the the board to automatically disconnect and reconnect.
+
+## Putting Everything Together
