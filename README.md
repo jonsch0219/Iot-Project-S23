@@ -15,4 +15,7 @@ Example: User does not want the temperature in its appartment to exceed 30 degre
 | Hardware | Picture | Link |
 | -------- | ------- | ---- |
 | Rasberry Pi Pico W | <img src="img/PicoW.jpg" width="200"> | https://www.electrokit.com/en/product/raspberry-pi-pico-w/ |
-| MCP9700 TO-92 Temperature Sensor | <img src="img/tempsensor.jpg" width="200"> | https://www.electrokit.com/en/product/mcp9700-e-to-to-92-temperature-sensor/ |
+| MCP9700 TO-92 Temperature sensor | <img src="img/tempsensor.jpg" width="200"> | https://www.electrokit.com/en/product/mcp9700-e-to-to-92-temperature-sensor/ |
+| Jumper wires 40-pin 30cm male/male | <img src="img/cables.jpg" width="200"> | https://www.electrokit.com/en/product/jumper-wires-40-pin-30cm-male-male/ |
+| LED 5mm red diffuse 1500mcd | <img src="img/led.jpg" width="200"> | https://www.electrokit.com/en/product/led-5mm-rod-diffus-1500mcd/ |
+| USB cable A-male – microB-male 1.8m | <img src="img/usb.jpg" width="200"> | https://www.electrokit.com/en/product/usb-cable-a-male-microb-male-1-8m/ |
