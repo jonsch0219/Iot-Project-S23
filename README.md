@@ -52,10 +52,11 @@ The setup given below is an example of how the different components can be conne
 
 Important things to make sure are connected properly: 
 
-Ground, Vdd and Vout is connected to respective pins of the Temperature sensor. See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf). 
+Temperature sensor: Ground pin to GND, 3V3(OUT) to Vdd pin and ADC pin to Vout See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf). 
 
-LED: Vdd to Anode and Ground to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
+LED: GP pin to Anode and Ground pin to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
 
+Rasberrry Pi Pico [documentation](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
 
 <img src="img/IoT-Bb-Sketch.png">
 
