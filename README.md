@@ -14,4 +14,5 @@ Example: User does not want the temperature in its appartment to exceed 30 degre
 ## Material
 | Hardware | Picture | Link |
 | -------- | ------- | ---- |
-| Rasberry Pi Pico W | <img src="" width="200"> | |
+| Rasberry Pi Pico W | <img src="img/PicoW.jpg" width="200"> | https://www.electrokit.com/en/product/raspberry-pi-pico-w/ |
+| MCP9700 TO-92 Temperature Sensor | <img src="img/tempsensor.jpg" width="200"> | https://www.electrokit.com/en/product/mcp9700-e-to-to-92-temperature-sensor/ |
