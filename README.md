@@ -48,3 +48,14 @@ Add the MicroPython firmware to the Pico:
 5. Wait for the the board to automatically disconnect and reconnect.
 
 ## Putting Everything Together
+The setup given below is an example of how the different components can be connected.
+
+Important things to make sure are connected properly: 
+
+Ground, Vdd and Vout is connected to respective pins of the Temperature sensor. See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf). 
+
+LED: Vdd to Anode and Ground to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
+
+
+<img src="img/IoT-Bb-Sketch.png">
+
