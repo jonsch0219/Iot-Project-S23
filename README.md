@@ -59,4 +59,22 @@ Rasberrry Pi Pico W [documentation](https://www.raspberrypi.com/documentation/mi
 <img src="img/IoT-Bb-Sketch.png">
 
 ## Platform
+The choice of platform for this project is Adafruit IO. Adafruit IO is a cloud service with focus on ease of use, it provides a easy way to send data to a server and display it without much programming.
+
+Read more about setting up an Adafruit IO [here](https://learn.adafruit.com/adafruit-io-home-security/adafruit-io-setup).
+
+## Code
+The code is dividen into different modules: 
+
+adafruit.py: handles sending all the data to our Adafruit IO feeds.
+
+connect.py: connects our Pico W to the internet. 
+
+led.py: contains the code that turns the led on and off depending on our logical conditions.
+
+temperature.py: code that converts the data given from our temperature sensor into degrees celcius.
+
+main.py: runs the program.
+
+
 
