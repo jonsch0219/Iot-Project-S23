@@ -211,5 +211,8 @@ Read more about setting up a adafruit IO dashboard [here](https://learn.adafruit
 The notification will look something like this if done correctly. The message sent by the bot can be set to whatever, as seen in the picture below you can either send a fitting music video or a more formal message! 
 <img src="img/notification.png">
 
+## Finalizing the Design
+
+
 
 
