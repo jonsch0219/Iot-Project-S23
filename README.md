@@ -72,7 +72,7 @@ The function getTemperature takes a filter_size as parameter which defines how m
 
 https://github.com/jonsch0219/Iot-Project-S23/blob/d48b7796de0d94e5900668648d82ea4feb5a29c0/src/temperature.py
 
-In order to dynamically change the temperature upper bound in the adafruit IO. I created a slider which is controlled by this callback function. 
+In order to dynamically change the temperature upper bound in the adafruit IO. I created a slider which is connected to the tempSlider function. 
 
 
 https://github.com/jonsch0219/Iot-Project-S23/blob/73f7e2fbf9c12e83746824b25d10b1d883acdc48/src/adafruit.py
