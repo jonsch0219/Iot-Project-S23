@@ -50,12 +50,160 @@ Add the MicroPython firmware to the Pico:
 ## Putting Everything Together
 The setup given below is an example of how the different components can be connected.
 
-Important things to make sure are connected properly: 
+IMPORTANT THINGS THAT MUST BE CONNECTED PROPERLY
+1. Temperature sensor: Ground pin to GND, 3V3(OUT) to Vdd pin and ADC pin to Vout See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf).
+2. LED: GP pin to Anode and Ground pin to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
 
-Ground, Vdd and Vout is connected to respective pins of the Temperature sensor. See datasheet for temperature sensor [here](https://www.electrokit.com/uploads/productfile/41011/21942e-2.pdf). 
-
-LED: Vdd to Anode and Ground to Cathode. See datasheet for LED [here](https://www.electrokit.com/uploads/productfile/40307/JSL-502-4030702x.pdf)
-
+Rasberrry Pi Pico W [documentation](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
 
 <img src="img/IoT-Bb-Sketch.png">
+
+## Platform
+The choice of platform for this project is Adafruit IO. Adafruit IO is a cloud service with focus on ease of use, it provides a easy way to send data to a server and display it without much programming.
+
+Read more about setting up an Adafruit IO [here](https://learn.adafruit.com/adafruit-io-home-security/adafruit-io-setup).
+
+## Code
+SendTemperature is the core function of the program, it sends the temperature to our adafruit IO and calls the SendLED. The sendLED function sends the LED status to adafruit and then depending on the LED status and time constraints calls the sendNotification function which signals the program to send a notification.
+
+```
+def sendTemperature(client, filter_size):
+    global last_temperature_sent_ticks
+    
+    if ((time.ticks_ms() - last_temperature_sent_ticks) < TEMPERATURES_INTERVAL):
+        return; # Too soon since last one sent.
+
+    
+    temp = temperature.getTemperature(filter_size)
+        
+    print("Publishing: {0} to {1} ... ".format(temp, AIO_TEMPERATURE_FEED), end='')
+    try:
+        client.publish(topic=AIO_TEMPERATURE_FEED, msg=str(temp))
+        print("DONE")
+    except Exception as e:
+        print("FAILED")
+    finally:
+        last_temperature_sent_ticks = time.ticks_ms()
+        sendLED(client, temp)
+```
+```
+def sendLED(client, temp):
+    global prev_led_status
+
+    led_status = led.checkMaxTemp(temp)
+
+    if led_status == prev_led_status:
+        pass; #no change in data no need to send
+    else:
+        print("Publishing: {0} to {1} ... ".format(led_status, AIO_LED_FEED), end='')
+        try:
+            client.publish(topic=AIO_LED_FEED, msg=led_status)
+            print("DONE")
+        except Exception as e:
+            print("FAILED")
+        finally:
+            prev_led_status = led_status
+            
+    if led_status == "ON":
+        sendNotification(client)
+```
+```
+def sendNotification(client):
+    global last_notification_sent_ticks
+
+    if ((time.ticks_ms()/1000 - last_notification_sent_ticks) < NOTIFICATION_INTERVAL and last_notification_sent_ticks != 0):
+        return;
+
+    signal = "SEND"
+
+    print("Publishing: {0} to {1} ... ".format(signal, AIO_NOTIFICATION_FEED), end='')
+    try:
+        client.publish(topic=AIO_NOTIFICATION_FEED, msg=signal)
+        print("DONE")
+    except Exception as e:
+        print("FAILED")
+    finally:
+        last_notification_sent_ticks = time.ticks_ms()/1000
+```
+
+The function getTemperature takes a filter_size as parameter which defines how many temperatures the function will take the average of and return as the temperature value. 
+```
+def getTemperature(filter_size):
+    
+    adc = machine.ADC(27)
+    sf = 4095/65535 # Scale factor
+    volt_per_adc = (3.3 / 4095)
+
+    temp = 0
+    i = 0
+
+    while i < filter_size:
+        millivolts = adc.read_u16()
+
+        adc_12b = millivolts * sf
+
+        volt = adc_12b * volt_per_adc
+
+        # MCP9700 characteristics
+        dx = abs(50 - 0)
+        dy = abs(0 - 0.5)
+
+        shift = volt - 0.5
+
+        temp += (shift/(dy/dx))/filter_size
+        
+        i += 1
+
+    return temp
+
+```
+In order to dynamically change the temperature upper bound in the adafruit IO. I created a slider which is connected to the tempSlider function. 
+```
+def tempSlider(topic, msg):
+    global templimit
+    print((topic, msg))
+    templimit = int(msg)
+    print("Max temperature set to", templimit)
+```
+In the main code the client.check_msg looks for interactions with the slider and calls the tempSlider function if a interaction/change occurs. How to connect your Pico W to wifi which is done in the connectToNetwork function can be found [here](https://projects.raspberrypi.org/en/projects/get-started-pico-w/2).
+```
+    try:
+        ip = connect.connectToNetwork()
+    except KeyboardInterrupt:
+            print("Keyboard interrupt")
+        
+    client = adafruit.mqttConnectTo()
+
+    try:                      
+        while 1:
+            client.check_msg()              
+            adafruit.sendTemperature(client, filter_size)
+    finally:                  
+        client.disconnect()   
+        client = None
+        print("Disconnected from Adafruit IO.")
+```
+In order to connect to our adafruit IO this function is called, the callback function is. In mqttConnectTo the function tempSlider is set as a callback function which causes the MQTT client to call the method on a sperate thread to the main application thread. The upperbound is hardcoded to its max value 100 at start therefore we publish it directly when we connect. After that we subscribe to the templimit feed in order to recieve data from the slider.  
+```
+def mqttConnectTo():
+    # Use the MQTT protocol to connect to Adafruit IO
+    client = MQTTClient(AIO_CLIENT_ID, AIO_SERVER, AIO_PORT, AIO_USER, AIO_KEY)
+
+    client.set_callback(tempSlider)
+    client.connect()
+    client.publish(topic=AIO_TEMPLIMIT_FEED, msg=str(templimit)) #synchronizes the slider and templimit at start
+    client.subscribe(AIO_TEMPLIMIT_FEED)
+    print("Connected to %s, subscribed to %s topic" % (AIO_SERVER, AIO_TEMPLIMIT_FEED))
+    return client
+```
+
+## Transmitting Data
+Because theres a limit of how much data can be sent to adafruit IO feeds we need to set certain restricitions. This is done by the variabel TEMPERATURES_INTERVAL (see code for sendTemperature function in section Code) this variabel is set to 20000 milliseconds. This interval also controls the sendLED- and sendNotification functions because they are called inside the sendTemperature method. This interval variable causes the function to only send data with atleast 20 second intervals. NOTIFICATION_INTERVAL is used in the sendNotification (see code for sendNotification function in section Code) this variabel is set to 1800 seconds and makes sure that notifications have atleast a 30 minute interval to avoid spam. These variables can be readjusted but just make sure you avoid sending to much data to the adafruit IO feeds. The tempSlider method sends data when changes in value occurs/interactions with the slider. Make sure not to spam the slider to avoid exceeding the data limit on adafruit IO.  
+
+The wireless protocol used in this project is WiFi and the transport protocol MQTT. In order to send a notification over discord I used a webhook which can be integrated into a discord server. [Here](https://learn.adafruit.com/discord-and-slack-connected-smart-plant-with-adafruit-io-triggers/discord-setup) is how to connect your adafruit IO webhooks to a discord server bot. 
+
+##Presenting The Data
+
+
+
 
