@@ -76,5 +76,13 @@ temperature.py: code that converts the data given from our temperature sensor in
 
 main.py: runs the program.
 
+SendTemperature is the core function of the program, it sends the temperature to our adafruit IO and calls the SendLED. The sendLED function sends the LED status to adafruit and then depending on the LED status and time constraints calls the sendNotification function which signals the program to send a notification.
+
+
+
+
+
+
+
 
 
