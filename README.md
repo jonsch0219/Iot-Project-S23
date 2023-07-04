@@ -4,12 +4,12 @@ Name: Jonas Scharin
 Student ID: js226yd
 
 ## Overview
-This project monitors the temperature and uses a LED and a discord bot to notify when the temperature has exceeded a upperbound which is dynamically set by the user. For someone with a basic knowledge of programming, webhooks, git and breadboards following this tutorial and setting up the project should not take more than an hour.
+This project monitors the temperature and uses a LED and a discord bot to notify when the temperature has exceeded a temperature upperbound which is dynamically set by the user. For someone with a basic knowledge of programming following this tutorial and setting up the project should take about 2-3 hours.
 
 ## Objective
-I have chosen to do create this device to in a fun and rewarding way learn about "Internet of Things. Why this specific project was chosen is because I want to be able to monitor and control the temperature in my home in a preemptive way, which in this case means that the user should have a greater awarness of the the temperature in a specific environment. The temperature upper bound which is dynamically set by the user serves as a threshold. When the threshold is exceeded the user will be informed by a lit up LED and a notification on discord. This feature helps the user have greater control over the environment.
+I have chosen to do create this device to in a fun and rewarding way learn about the field "Internet of Things". Why this specific project was chosen is because I want to be able to monitor and control the temperature in my home in a preemptive way, which in this case means that the user should have a greater awarness of the the temperature in a specific environment. The temperature upper bound which is dynamically set by the user serves as a threshold. When the threshold is exceeded the user will be informed by a lit up LED and a notification on discord. This feature helps the user have greater control over the environment.
 
-Example: User does not want the temperature in its appartment to exceed 30 degrees so it sets the upper bound to 30 degrees. When the upper bound is passed the user will be informed and can take actions such as opening a window, turning on a fan e.t.c to keep the temperature below its upper bound.
+Example: User does not want the temperature in its appartment to exceed 30 degrees so it sets the upper bound to 30 degrees celcius. When a temperature of over 30 degrees celcius is registered the user will be informed and can take actions such as opening a window, turning on a fan e.t.c to keep the temperature below its upper bound.
 
 ## Material
 The Rasberry Pi Pico W is the microcontroller used for this project. See datasheet [here](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf).
@@ -59,7 +59,7 @@ Rasberrry Pi Pico W [documentation](https://www.raspberrypi.com/documentation/mi
 <img src="img/IoT-Bb-Sketch.png">
 
 ## Platform
-The choice of platform for this project is Adafruit IO. Adafruit IO is a cloud service with focus on ease of use, it provides a easy way to send data to a server and display it without much programming.
+The choice of platform for this project is Adafruit IO. Adafruit IO is a cloud service with focus on ease of use, it provides a easy way to send data to a server and display it without much programming needed.
 
 Read more about setting up an Adafruit IO [here](https://learn.adafruit.com/adafruit-io-home-security/adafruit-io-setup).
 
@@ -183,7 +183,7 @@ In the main code the client.check_msg looks for interactions with the slider and
         client = None
         print("Disconnected from Adafruit IO.")
 ```
-In order to connect to our adafruit IO this function is called, the callback function is. In mqttConnectTo the function tempSlider is set as a callback function which causes the MQTT client to call the method on a sperate thread to the main application thread. The upperbound is hardcoded to its max value 100 at start therefore we publish it directly when we connect. After that we subscribe to the templimit feed in order to recieve data from the slider.  
+In order to connect to our adafruit IO this function is called. In mqttConnectTo the function tempSlider is set as a callback function which causes the MQTT client to call the method on a sperate thread to the main application thread. The upperbound is hardcoded to its max value 100 at start therefore we publish it directly when we connect. After that we subscribe to the templimit feed in order to recieve data from the slider.  
 ```
 def mqttConnectTo():
     # Use the MQTT protocol to connect to Adafruit IO
@@ -212,7 +212,9 @@ The notification will look something like this if done correctly. The message se
 <img src="img/notification.png">
 
 ## Finalizing the Design
+Here is a picture of the final project in action.
 
+<img src="img/final-result.jpg" width = "500">
 
-
+Overall I am satisfied with my project, there is ofcourse more room for improvement. For example adding a lower bound temperature as well as integrating some more or other  functionalities than the notification and led when the temperature upper bound is exceeded. As it is now this project is perfect for someone curious about IoT and wants to get a fun and rewarding start!
 
