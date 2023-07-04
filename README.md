@@ -79,6 +79,7 @@ https://github.com/jonsch0219/Iot-Project-S23/blob/73f7e2fbf9c12e83746824b25d10b
 
 In the main code the client checks for any interactions with the slider and calls the tempSlider function if there is change in value.
 
+https://github.com/jonsch0219/Iot-Project-S23/blob/b098f8f62e0264f2d285141ba8a120c648edc548/src/main.py
 
 
 
