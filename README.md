@@ -208,8 +208,8 @@ The chart keeps track of all temperatures registered over a 24 hour period, the 
 
 Read more about setting up a adafruit IO dashboard [here](https://learn.adafruit.com/adafruit-io-basics-dashboards/creating-a-dashboard).
 
-
-
+The notification will look something like this if done correctly. The message sent by the bot can be set to whatever, as seen in the picture below you can either send a fitting music video or a more formal message! 
+<img src="img/notification.png">
 
 
 
