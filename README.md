@@ -64,19 +64,11 @@ The choice of platform for this project is Adafruit IO. Adafruit IO is a cloud s
 Read more about setting up an Adafruit IO [here](https://learn.adafruit.com/adafruit-io-home-security/adafruit-io-setup).
 
 ## Code
-The code is dividen into different modules: 
-
-adafruit.py: handles sending all the data to our Adafruit IO feeds.
-
-connect.py: connects our Pico W to the internet. 
-
-led.py: contains the code that turns the led on and off depending on our logical conditions.
-
-temperature.py: code that converts the data given from our temperature sensor into degrees celcius.
-
-main.py: runs the program.
-
 SendTemperature is the core function of the program, it sends the temperature to our adafruit IO and calls the SendLED. The sendLED function sends the LED status to adafruit and then depending on the LED status and time constraints calls the sendNotification function which signals the program to send a notification.
+
+https://github.com/jonsch0219/Iot-Project-S23/blob/86fe0c3e9558c0584c30651cdc2d9f4eeeb9386d/src/adafruit.py
+
+The function getTemperature takes a filter_size as parameter which defines how many temperatures the function will take the average of and return as the temperature value. 
 
 
 
