@@ -70,6 +70,13 @@ https://github.com/jonsch0219/Iot-Project-S23/blob/86fe0c3e9558c0584c30651cdc2d9
 
 The function getTemperature takes a filter_size as parameter which defines how many temperatures the function will take the average of and return as the temperature value. 
 
+https://github.com/jonsch0219/Iot-Project-S23/blob/d48b7796de0d94e5900668648d82ea4feb5a29c0/src/temperature.py
+
+In order to dynamically change the temperature upper bound in the adafruit IO. I created a slider which is controlled by this callback function. 
+
+
+In the main code the client checks for any interactions with the slider and calls the tempSlider function if there is change in value.
+
 
 
 
