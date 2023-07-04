@@ -75,6 +75,8 @@ https://github.com/jonsch0219/Iot-Project-S23/blob/d48b7796de0d94e5900668648d82e
 In order to dynamically change the temperature upper bound in the adafruit IO. I created a slider which is controlled by this callback function. 
 
 
+https://github.com/jonsch0219/Iot-Project-S23/blob/73f7e2fbf9c12e83746824b25d10b1d883acdc48/src/adafruit.py
+
 In the main code the client checks for any interactions with the slider and calls the tempSlider function if there is change in value.
 
 
