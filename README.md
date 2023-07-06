@@ -1,4 +1,4 @@
-# Iot-Project-S23
+# Temperature Monitor with Notifications and LED 
 Name: Jonas Scharin
 
 Student ID: js226yd
