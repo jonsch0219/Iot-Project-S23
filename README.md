@@ -14,7 +14,7 @@ Example: User does not want the temperature in its appartment to exceed 30 degre
 ## Material
 The Rasberry Pi Pico W is the microcontroller used for this project. See datasheet [here](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf).
 
-The MCP9700 TO-92 Temperature sensor has a range of -40° - 125°C, which works fine for this project as long as your not monitoring extreme environments. The sensor outputs linear voltage (analog).
+The MCP9700 TO-92 Temperature sensor has a range of -40° to +125°C, which works fine for this project as long as your not monitoring extreme environments. The sensor outputs linear voltage (analog).
 
 I have chosen to use a 5mm red diffuse 1500mcd LED to turn on when the temperature has exceeded its upper bound. The choice of LED here is not strict at all.
 
@@ -56,7 +56,7 @@ IMPORTANT THINGS THAT MUST BE CONNECTED PROPERLY
 
 Rasberrry Pi Pico W [documentation](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
 
-<img src="img/IoT-Bb-Sketch.png">
+<img src="img/Bb-sketch.png">
 
 ## Platform
 The choice of platform for this project is Adafruit IO. Adafruit IO is a cloud service with focus on ease of use, it provides a easy way to send data to a server and display it without much programming needed.
