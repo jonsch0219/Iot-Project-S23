@@ -1,3 +1,4 @@
+# Make sure to rename this file to credentials.py in order for the imports to work 
 SSID = "Your WiFi SSID"
 WIFI_PASSWORD = "Your WiFi Password"
 
