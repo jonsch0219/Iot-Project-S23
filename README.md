@@ -202,7 +202,7 @@ Because theres a limit of how much data can be sent to adafruit IO feeds we need
 
 The wireless protocol used in this project is WiFi and the transport protocol MQTT. In order to send a notification over discord I used a webhook which can be integrated into a discord server. [Here](https://learn.adafruit.com/discord-and-slack-connected-smart-plant-with-adafruit-io-triggers/discord-setup) is how to connect your adafruit IO webhooks to a discord server bot. 
 
-##Presenting The Data
+## Presenting The Data
 <img src="img/dashboard.png">
 The chart keeps track of all temperatures registered over a 24 hour period, the slider as mentioned is connected to our tempSlider function and sends data to our main program to keep track of the upper bound temperture limit, and the led status keeps track of the LED's status. If the staus is ON it means the LED is turned on and the temperature is currently above its upper limit, if the staus is OFF then the led is off and the temperature has not exceeded its upper bound.
 
